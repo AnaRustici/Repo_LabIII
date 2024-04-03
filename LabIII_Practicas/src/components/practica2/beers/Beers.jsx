@@ -1,8 +1,8 @@
 import React from 'react'
-import EachBeer from './EachBeer'
-import AvailableBeers from './AvailableBeers'
-import Red_IPA_Beers from './Red_IPA_Beers'
-import BeersStyles from './BeersStyles'
+import EachBeer from '../eachBeer/EachBeer'
+import AvailableBeers from '../availableBeers/AvailableBeers'
+import Red_IPA_Beers from '../redIPAbeers/Red_IPA_Beers'
+import BeersStyles from '../beersStyles/BeersStyles'
 
 const beers = [
     {
