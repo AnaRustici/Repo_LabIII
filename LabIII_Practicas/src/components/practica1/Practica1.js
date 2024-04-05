@@ -129,6 +129,4 @@ const returnMovieTitle = (watchList) => {
     return listOfMovies
 }
 
-const titlesArray = returnMovieTitle(watchList);
-
-console.log(titlesArray)
+export const titlesArray = returnMovieTitle(watchList);

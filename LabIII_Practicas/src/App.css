@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+
+.div-prac-ad {
+  display: flex;
+  justify-content: space-around;
+}
