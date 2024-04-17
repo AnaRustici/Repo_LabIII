@@ -1,4 +1,3 @@
-
 const watchList = [
     {
         Title: 'Inception',

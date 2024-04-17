@@ -1,6 +1,5 @@
-import { useState } from 'react';
+
 import './App.css'
-import BookForm from './components/bookForm/BookForm';
 import Books from "./components/books/Books"
 
 function App() {
@@ -44,22 +43,12 @@ function App() {
     },
   ]
 
-  const [books, setBooks] = useState(BOOKS);
-  
-  const saveBookDataHandler = (enteredBookData) => {
-    const bookData = {
-      ...enteredBookData,
-      id: Math.random().toString(),
-    };
-    setBooks((prev) => [...prev, bookData]);
-  };
 
   return (
     <>
       <h2>Books Champion App</h2>
       <p>¡Quiero leer libros!</p>
-      <BookForm onBookDataSaved={saveBookDataHandler}></BookForm>
-      <Books books={books}></Books>
+      <Books allBooks={BOOKS}></Books>
     </>
   )
 }
