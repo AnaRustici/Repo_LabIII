@@ -18,11 +18,14 @@ const Table = () => {
     const average = sumIncomes / netIncomes.length
 
     return (
-        <Container className='container'>
-            <Row>{mappedBrands}</Row>
-            <Row>{mappedIncomes}</Row>
-            <Row><p>Average incomes: {average.toFixed(2)}</p></Row>
-        </Container>
+        <div>
+            <Container className='container'>
+                <Row>{mappedBrands}</Row>
+                <Row>{mappedIncomes}</Row>
+            </Container>
+            <p>Average incomes: {average.toFixed(2)}</p>
+        </div>
+
     )
 }
 

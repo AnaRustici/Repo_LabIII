@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import EachBeer from '../eachBeer/EachBeer'
 import AvailableBeers from '../availableBeers/AvailableBeers'
 import Red_IPA_Beers from '../redIPAbeers/Red_IPA_Beers'
 import BeersStyles from '../beersStyles/BeersStyles'
+import ChangeDollar from '../changeDollar/ChangeDollar'
+import NewBeer from '../newBeer/NewBeer'
 
-const beers = [
+const BEERS = [
     {
         id: 1,
         beerName: "American",
@@ -71,15 +73,32 @@ const beers = [
 ]
 
 const Beers = () => {
+    const [newPrice, setNewPrice] = useState(false)
+    const [beers, setBeers] = useState(BEERS)
+
+    const priceHandler = () => {
+        setNewPrice(!newPrice)
+    }
+
+    const saveBeerDataHandler = (enteredBeerData) => {
+        const beerData = {
+            ...enteredBeerData,
+            id: Math.random().toString()
+        }
+        setBeers((prev) => [...prev, beerData])
+    }
+
     return (
         <>
             <h2>Beers</h2>
+            <NewBeer onBeerDataSaved={saveBeerDataHandler}></NewBeer>
             <div style={{display: 'flex'}}>
                 <div style={{marginRight: '20px'}}>
                     <i><u>Beer and price:</u></i>
                     {beers.map((beer) => (
-                        <EachBeer key={beer.id} name={beer.beerName} price={beer.price}></EachBeer>
+                        <EachBeer newPrice={newPrice} key={beer.id} name={beer.beerName} price={beer.price}></EachBeer>
                     ))}
+                    <ChangeDollar priceHandler={priceHandler} currentPrice={newPrice}></ChangeDollar>
                 </div>
                 <div style={{marginRight: '20px'}}>
                     <i><u>Available beers:</u></i>

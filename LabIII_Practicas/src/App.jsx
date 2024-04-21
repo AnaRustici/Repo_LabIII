@@ -1,5 +1,5 @@
 import './App.css'
-import Beers from './components/practica2/beers/Beers'
+import Beers from './components/beers/Beers'
 
 function App() {
 
