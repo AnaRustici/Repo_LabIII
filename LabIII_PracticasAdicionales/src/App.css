@@ -5,7 +5,7 @@
   text-align: center;
 }
 
-.div-prac-ad {
+.div-ejercicios {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }

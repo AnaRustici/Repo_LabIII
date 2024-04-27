@@ -2,6 +2,7 @@ import './App.css'
 import Products from './components/products/Products'
 import Persons from './components/persons/Persons'
 import Family from './components/family/Family'
+import TableForm from './components/tableForm/TableForm';
 
 function App() {
 
@@ -17,12 +18,15 @@ function App() {
 
   return (
     <>
-      <h2>Práctica adicional 1</h2>
-      <div className='div-prac-ad'>
+      <h2><i>Práctica adicional 1</i></h2>
+      <div className='div-ejercicios'>
         <Products products={products}></Products>
         <Persons names={names}></Persons>
         <Family persons={persons}></Family>
       </div>
+      <h2><i>Práctica adicional 2</i></h2>
+      <TableForm></TableForm>
+
     </>
   )
 }
