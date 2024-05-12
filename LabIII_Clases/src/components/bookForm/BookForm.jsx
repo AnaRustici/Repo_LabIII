@@ -32,20 +32,25 @@ const BookForm = ({ onBookDataSaved }) => {
 
     const submitBookHandler = (event) => {
         event.preventDefault()
-        const bookData = {
-            bookTitle: enteredTitle,
-            bookAuthor: enteredAuthor,
-            bookRating: enteredRating !== "" ? Array(parseInt(enteredRating, 10)).fill("*") : Array(0),
-            pageCount: parseInt(enteredPageCount, 10),
-            imageUrl: enteredImgURL,
+
+        if (enteredAuthor !== "" && enteredImgURL !== "" && enteredPageCount !== "" && enteredRating !== "" && enteredTitle !== "") {
+            const bookData = {
+                bookTitle: enteredTitle,
+                bookAuthor: enteredAuthor,
+                bookRating: enteredRating !== "" ? Array(parseInt(enteredRating, 10)).fill("*") : Array(0),
+                pageCount: parseInt(enteredPageCount, 10),
+                imageUrl: enteredImgURL,
+                available: true
+            }
+            onBookDataSaved(bookData);
         }
-        onBookDataSaved(bookData);
         setEnteredTitle("");
         setEnteredAuthor("");
         setEnteredRating("");
         setEnteredPageCount("");
         setEnteredImgURL("");
     }
+
     return (
         <div className="div-form">
             <Button variant="dark" onClick={showFormHandler}>

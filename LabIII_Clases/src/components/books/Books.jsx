@@ -3,18 +3,10 @@ import BookItem from '../bookItem/BookItem'
 import SearchBook from '../searchBook/SearchBook'
 import BookForm from '../bookForm/BookForm'
 import './Books.css'
+import { BOOKS } from '../data/Data'
 
-const Books = ({ allBooks }) => {
+const Books = ({books}) => {
   const [text, setText] = useState('')
-  const [books, setBooks] = useState(allBooks)
-
-  const saveBookDataHandler = (enteredBookData) => {
-    const bookData = {
-      ...enteredBookData,
-      id: Math.random().toString(),
-    };
-    setBooks((prev) => [...prev, bookData]);
-  };
 
   const inputHandler = (inputText) => {
     setText(inputText)
@@ -26,8 +18,9 @@ const Books = ({ allBooks }) => {
   return (
     <>
       <div className='main-div'>
+        <h2>Books Champion App</h2>
+        <p>¡Quiero leer libros!</p>
         <SearchBook onSearch={inputHandler}></SearchBook>
-        <BookForm onBookDataSaved={saveBookDataHandler}></BookForm>
         <div className="d-flex justify-content-center flex-wrap">
           {booksSearched.map((book) => (
             <BookItem
