@@ -1,14 +1,24 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./BookForm.css"
 import { Button } from 'react-bootstrap'
 
 const BookForm = ({ onBookDataSaved }) => {
     const [enteredTitle, setEnteredTitle] = useState("")
     const [enteredAuthor, setEnteredAuthor] = useState("")
-    const [enteredPageCount, setEnteredPageCount] = useState("")
-    const [enteredRating, setEnteredRating] = useState("")
+    const [enteredPageCount, setEnteredPageCount] = useState(0)
+    const [enteredRating, setEnteredRating] = useState(0)
     const [enteredImgURL, setEnteredImgURL] = useState("")
     const [showForm, setShowForm] = useState(false)
+    const [formValid, setFormValid] = useState(false)
+
+    useEffect(() => {
+        setFormValid(
+            enteredAuthor !== "" &&
+            enteredPageCount !== "" &&
+            enteredRating !== "" &&
+            enteredTitle !== ""
+        )
+    }, [enteredAuthor, enteredPageCount, enteredRating, enteredTitle])
 
     const titleHandler = (event) => {
         setEnteredTitle(event.target.value)
@@ -32,18 +42,15 @@ const BookForm = ({ onBookDataSaved }) => {
 
     const submitBookHandler = (event) => {
         event.preventDefault()
-
-        if (enteredAuthor !== "" && enteredImgURL !== "" && enteredPageCount !== "" && enteredRating !== "" && enteredTitle !== "") {
-            const bookData = {
-                bookTitle: enteredTitle,
-                bookAuthor: enteredAuthor,
-                bookRating: enteredRating !== "" ? Array(parseInt(enteredRating, 10)).fill("*") : Array(0),
-                pageCount: parseInt(enteredPageCount, 10),
-                imageUrl: enteredImgURL,
-                available: true
-            }
-            onBookDataSaved(bookData);
+        const bookData = {
+            bookTitle: enteredTitle,
+            bookAuthor: enteredAuthor,
+            bookRating: enteredRating,
+            pageCount: enteredPageCount,
+            imageUrl: enteredImgURL,
+            available: true
         }
+        onBookDataSaved(bookData);
         setEnteredTitle("");
         setEnteredAuthor("");
         setEnteredRating("");
@@ -80,7 +87,7 @@ const BookForm = ({ onBookDataSaved }) => {
                             <input value={enteredImgURL} type="text" onChange={imageHandler}></input>
                         </div>
                         <div className="new-book-actions">
-                            <button type="submit">Agregar lectura</button>
+                            <button type="submit" disabled={!formValid}>Agregar lectura</button>
                         </div>
                     </div>
 

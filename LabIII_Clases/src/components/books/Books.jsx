@@ -1,39 +1,25 @@
-import React, { useState } from 'react'
-import BookItem from '../bookItem/BookItem'
-import SearchBook from '../searchBook/SearchBook'
-import BookForm from '../bookForm/BookForm'
+import React from 'react'
 import './Books.css'
-import { BOOKS } from '../data/Data'
+import BookItem from '../bookItem/BookItem'
 
-const Books = ({books}) => {
-  const [text, setText] = useState('')
-
-  const inputHandler = (inputText) => {
-    setText(inputText)
-  }
-
-  const booksSearched = books.filter((book) => book.bookTitle.toLowerCase().includes(text.toLowerCase()))
-
+const Books = ({books, onDeletedBook}) => {
 
   return (
     <>
-      <div className='main-div'>
-        <h2>Books Champion App</h2>
-        <p>¡Quiero leer libros!</p>
-        <SearchBook onSearch={inputHandler}></SearchBook>
-        <div className="d-flex justify-content-center flex-wrap">
-          {booksSearched.map((book) => (
-            <BookItem
-              key={book.id}
-              title={book.bookTitle}
-              author={book.bookAuthor}
-              rating={book.bookRating}
-              pageCount={book.pageCount}
-              imageUrl={book.imageUrl}
-              isAvailable={book.available}>
-            </BookItem>
-          ))}
-        </div>
+      <div className="d-flex justify-content-center flex-wrap">
+        {books.map((book) => (
+          <BookItem
+            key={book.id}
+            id={book.id}
+            title={book.bookTitle}
+            author={book.bookAuthor}
+            rating={book.bookRating}
+            pageCount={book.pageCount}
+            imageUrl={book.imageUrl}
+            isAvailable={book.available}
+            onDeletedBook={onDeletedBook}>
+          </BookItem>
+        ))}
       </div>
 
     </>

@@ -4,13 +4,17 @@ import propTypes from 'prop-types';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
-const BookItem = ({title, author, pageCount, rating, imageUrl, isAvailable}) => {
+const BookItem = ({id, title, author, pageCount, rating, imageUrl, isAvailable, onDeletedBook}) => {
   const [newState, setNewState] = useState(isAvailable)
 
   const text = newState ? 'Available' : 'Sold Out'
 
   const clickHandler = () => {
     setNewState(!newState)
+  }
+
+  const deleteHandler = () => {
+    onDeletedBook(id)
   }
     
   return (
@@ -23,20 +27,22 @@ const BookItem = ({title, author, pageCount, rating, imageUrl, isAvailable}) => 
           <Card.Body>
             <Card.Title>{title}</Card.Title> 
             <Card.Subtitle>{author}</Card.Subtitle> 
-            <div>{rating?.length} estrellas</div> 
+            <div>{rating} estrellas</div> 
             <p>{pageCount} páginas</p>
             <p>{text}</p>
           </Card.Body>
           <Button variant='dark' onClick={clickHandler}>Cambiar estado</Button>
+          <Button variant='danger' onClick={deleteHandler}>Eliminar libro</Button>
       </Card>
   )
 }
 
 BookItem.propTypes = { 
+    id: propTypes.string,
     title: propTypes.string, 
     author: propTypes.string, 
     pageCount: propTypes.number, 
-    rating: propTypes.array,
+    rating: propTypes.number,
     isAvailable: propTypes.bool, 
 };
 
